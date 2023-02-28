@@ -3,8 +3,8 @@ set dest=E:\JD-Download
 set search=*.mp4 *.avi *.wmv
 
 for /f "tokens=*" %%a in ('dir /b /s *.mp4 *.avi *.wmv') do (
-    move "%%a" %dest%
-    for %%b in ("%%~dpa.") do (
-        rd /s /q "%%~fb"
+    move "%%a" %dest%)
+
+for /f %%b in ('dir /ad /b') do (
+        rd /s /q %%b
   )
-)
