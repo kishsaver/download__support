@@ -2,9 +2,9 @@
 set dest=E:\JD-Download
 set search=*.mp4 *.avi *.wmv
 
-for /f "tokens=*" %%a in ('dir /b /s *.mp4 *.avi *.wmv') do (
+for /f "delims=" %%a in ('dir /b /s *.mp4 *.avi *.wmv *.mkv *.mov *.mkv *.webm') do (
     move "%%a" %dest%)
 
-for /f %%b in ('dir /ad /b') do (
-        rd /s /q %%b
+for /f "delims=" %%b in ('dir /ad /b') do (
+        rd /s /q "%%b"
   )
