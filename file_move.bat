@@ -1,4 +1,7 @@
 @echo off
+rem バッチファイルが配置されているディレクトリを取得
+set "script_dir=%~dp0"
+cd /d "%script_dir%"
 set dest=./
 
 rem 動画拡張子: mp4, avi, wmv, mkv, mov, ts, webm, flv, m4v, 3gp, asf, rm, rmvb, vob, ogv
@@ -7,8 +10,9 @@ for /f "delims=" %%a in ('dir /b /s *.mp4 *.avi *.wmv *.mkv *.mov *.ts *.webm *.
     call :move_with_rename "%%a"
 )
 
-for /f "delims=" %%b in ('dir /ad /b') do (
-    rd /s /q "%%b"
+rem 空になったサブディレクトリを削除（バッチファイルのディレクトリ内のみ）
+for /f "delims=" %%b in ('dir /ad /b "%script_dir%"') do (
+    rd /s /q "%script_dir%%%b"
 )
 
 goto :eof
